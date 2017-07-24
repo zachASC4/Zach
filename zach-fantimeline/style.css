@@ -1,0 +1,46 @@
+body{
+    background-size:cover;
+    background-position: center;
+    text-align: center;
+}
+
+.liluzi{
+    border: solid 5 px green;
+}
+
+.birth{
+
+    border: solid 2px blue;
+    background-color: lightblue;
+    width: 60%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 20px;
+
+    padding: 10px;
+
+}
+
+.draft{
+    border: solid 8px red;
+}
+
+.mvp{
+
+}
+
+.acl{
+
+}
+.meniscus{
+
+}
+.knicks{
+
+}
+
+p{
+    display: inline-block;
+    width: 74%;
+    vertical-align: middle;
+}
