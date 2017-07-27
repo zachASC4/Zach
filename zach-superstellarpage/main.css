@@ -1,0 +1,34 @@
+/*.item{
+    width: 100%;
+    height: auto;
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; height: auto">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="https://static1.gamespot.com/uploads/original/1406/14063904/3134989-image+%287%29.jpeg" style="object-fit:contain" class="img-responsive center-block">
+      </div>
+
+     <div class="item">
+        <img src="https://static5.gamespot.com/uploads/original/1406/14063904/3134178-nba2k177.jpg" style="object-fit:contain" class="img-responsive center-block">
+      </div>
+    
+     <div class="item">
+        <img src="https://media.contentapi.ea.com/content/www-easports/en_US/madden-nfl/news/2016/madden-17-additional-gameplay-improvements-zone-coverage/_jcr_content/par/image_0.img.jpg" style="object-fit:contain" class="img-responsive center-block">
+      </div>
+
+    <div class="item">
+        <img src="https://media.giphy.com/media/3oz8xKDludH2jI0fqo/giphy.gif" style="object-fit:contain" class="img-responsive center-block">
+        
+        </div>
+    </div>
+
+}*/
+
