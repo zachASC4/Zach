@@ -1,0 +1,20 @@
+body{
+    background-size: cover;
+    object-fit: contain;
+    background-image:url("https://28nwgk2wx3p52fe6o9419sg5-wpengine.netdna-ssl.com/wp-content/uploads/2016/04/fort-lee-apartments-for-rent-the-modern-hero.jpg");
+}
+
+.nav-item{
+    margin: 10%;
+    color:white;
+}
+.nav-link{
+    color:black;
+}
+.navbar{
+    margin-left: 30px;
+}
+.zach{
+    margin-left:-1%;
+    resize: 200%;
+}
