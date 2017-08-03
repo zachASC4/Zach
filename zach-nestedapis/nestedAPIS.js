@@ -3,7 +3,7 @@ var countryURL = "https://restcountries.eu/rest/v2/alpha/NL";
 
 $.ajax({
   url: userURL,
-  success: .done(function(data) {
+  success: (function(data) {
     var dataResults = data.results[0];  
     var firstName = dataResults.name.first;
     var lastName = dataResults.name.last;
