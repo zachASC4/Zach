@@ -1,10 +1,35 @@
 <!DOCTYPE html>
+
 <html>
     <head>
+    <meta name="google-signin-client_id" content="138612192376-f4qlfj6j98bm30a3tir4i8jbbd13a2ni.apps.googleusercontent.com">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
+     <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="rps.js"></script>
+    <link rel="stylesheet" href="rps.css">
     </head>
-    <body>
+    <center><body>
+        <div class="rock button col-12">
+        <button onclick="rockChoice()">Rock</button>
+        </div>
+
+        <div class="paper button col-12">
+        <button onclick="paperChoice()">Paper </button>
+        </div>
+
+        <div class="scissors button col-12">
+        <button onclick="scissorsChoice()">Scissors</button>
+        </div>
+        <div class="signs">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+    </div>
+    <header>
+            <h2 class = "col-12">Welcome To Rock Paper Scissors, <span class="userName">Please Sign In</span></h2>    
+        </header>
     </body>
 </html>
