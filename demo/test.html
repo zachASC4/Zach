@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Gmail API demo</title>
+    <title>Email Expenses</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -18,16 +18,18 @@
   </head>
   <body>
     <div class="container">
-      <h1>Gmail API demo</h1>
+      <h1>Email Expenses</h1>
 
       <button id="authorize-button" class="btn btn-primary hidden">Authorize</button>
 
-      <table class="table table-striped table-inbox hidden">
+      <table class="table table-striped table-inbox hidden tablesorter" id="myTable">
         <thead>
           <tr>
-            <th>From</th>
-            <th>Subject</th>
-            <th>Date/Time</th>
+            <th>From <a href="#">Alphabetize</a></th>
+            <th>Subject <a href="#">Sort by Subject</a></th>
+            <th>Date/Time <a href="#">Sort by Date</a></th>
+            <th>Price <a href="#">Sort by Price</a></th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -36,11 +38,14 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"> </script>
+    <script src = "tablesorter.js"></script>
 
     <script type="text/javascript">
       var clientId = '436983518531-3remj6gnl27ia4dh0u79j3vibrgrhtt3.apps.googleusercontent.com';
       var apiKey = 'AIzaSyD_6yetINaYFhY-EO-EaeHEn0Lde-Zp1u8';
       var scopes = 'https://www.googleapis.com/auth/gmail.readonly';
+var messages = [];
       function handleClientLoad() {
         gapi.client.setApiKey(apiKey);
         window.setTimeout(checkAuth, 1);
@@ -74,6 +79,10 @@
       }
       function loadGmailApi() {
         gapi.client.load('gmail', 'v1', displayInbox);
+                  setTimeout(function(){
+   $('#myTable').tablesorter();
+  }, 10000);
+
       }
       function displayInbox() {
         var request = gapi.client.gmail.users.messages.list({
@@ -88,14 +97,23 @@
               'userId': 'me',
               'id': this.id
             });
-            messageRequest.execute(appendMessageRow);
+             messageRequest.execute(appendMessageRow);
             
           });
         });
-      }
 
+      }
       
-      function appendMessageRow(message) {
+       function appendMessageRow(message) {
+         var messageObject  = { }
+         messageObject.from = getHeader(message.payload.headers, 'From');
+        /* messageObject.date =  getHeader(message.payload.headers, 'Date');
+        */
+         messageObject.subject =  getHeader(message.payload.headers, 'Subject');
+         console.log()
+  messages.push(messageObject);
+
+
         $('.table-inbox tbody').append(
           '<tr>\
             <td>'+ getHeader(message.payload.headers, 'From')+'</td>\
@@ -105,8 +123,8 @@
                 getHeader(message.payload.headers, 'Subject') +
               '</a>\
             </td>\
-            <td>'+getHeader(message.payload.headers, 'Date')+'</td>\
-          </tr>'
+             <td>'+ Date.parse(getHeader(message.payload.headers, 'Date')).toLocaleString()+'</td>\
+             <td>\  </td>\ <td> <span class="glyphicon glyphicon-remove email-remove"> </span> </td>\ </tr>'
         );
         $('body').append(
           '<div class="modal fade" id="message-modal-' + message.id +
@@ -131,18 +149,20 @@
             </div>\
           </div>'
         );
+
+
         $('#message-link-'+message.id).on('click', function(){
             
           var ifrm = $('#message-iframe-'+message.id)[0].contentWindow.document;
           $('body', ifrm).html(getBody(message.payload));
           var bodyText = getBody(message.payload).replace(/<\/?[^>]+(>|$)/g, "");
-         
+          console.log(bodyText);
+          var bodySlice = bodyText.match(/^(\d*([.,](?=\d{3}))?\d+)+((?!\2)[.,]\d\d)?$/) ;
+      
+          console.log(bodySlice);
         });
       }
 
-
-
-      
 
       function getHeader(headers, index) {
         var header = '';
@@ -170,8 +190,10 @@
         return decodedBody;
       }
 
-    //   getBody("love");
-    //   console.log(decodedBody);
+      function remove(){
+        email-remove().parents(row).remove;
+      }
+
       function getHTMLPart(arr) {
         for(var x = 0; x <= arr.length; x++)
         {
