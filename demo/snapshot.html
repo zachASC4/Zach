@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script type = "text/javascript">
+var fps = 1000/25; //Approximately 25 frames per second
+
+var videoDrawInterval = setInterval( function() {
+    ctx.drawImage(video, 0, 0, 640, 480);
+}, fps );
+
+
+something.onclick = function() {
+    clearInterval( videoDrawInterval );
+
+    var snapshotImg = new Image();
+    snapshotImg.src = canvas.toDataURL('image/jpeg', 0.5); //Second param is jpg quality
+
+    var win = window.open( '', 'Snapshot', 'width=640, height=480'  );
+    win.document.body.appendChild( snapshotImg );
+}
+</script>
+</body>
+</html>
